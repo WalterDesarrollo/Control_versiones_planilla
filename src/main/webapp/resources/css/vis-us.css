@@ -1,0 +1,101 @@
+  /* Estilo para el cuerpo de la página */
+        body {
+            background-color: #000; /* Fondo negro */
+            color: white; /* Texto blanco para asegurarnos de que sea legible */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative; /* Relativo para que el botón se posicione correctamente */
+        }
+
+        /* Centrar el título */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor de la tabla */
+        .data-table {
+            width: 96%; /* Ajusta el ancho de la tabla */
+           margin: 50px auto 0 auto; /* Añadir un margen superior de 50px para separar del botón */
+        }
+
+        /* Estilo general de la tabla */
+        .styled-table {
+            border-collapse: collapse;
+            width: 100%;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para los encabezados de la tabla */
+        .styled-table thead tr {
+            background-color: #000; /* Fondo negro */
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Efecto hover sobre los encabezados */
+        .styled-table thead th:hover {
+            background-color: #333; /* Oscurece un poco el fondo en hover */
+            color: #ffffff; /* Cambia el color de la letra a blanco en hover */
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+        }
+
+        /* Estilo para las filas y celdas de la tabla */
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+        }
+
+        /* Alterna colores en las filas */
+        .styled-table tbody tr:nth-child(even) {
+            background-color: #dddddd; /* Color claro para filas pares */
+        }
+
+        .styled-table tbody tr:nth-child(odd) {
+            background-color: #888; /* Color gris para filas impares */
+        }
+
+        /* Efecto hover sobre las filas */
+        .styled-table tbody tr:hover {
+            background-color: #333 !important; /* Color más oscuro al pasar el cursor */
+             color: white !important; /* Texto blanco en hover */
+        }
+
+        /* Centra el texto en las cabeceras */
+        .styled-table thead th {
+            text-align: center;
+        }
+
+        /* Añadir un borde inferior al último encabezado */
+        .styled-table thead th:last-child {
+            border-right: 1px solid #dddddd;
+        }
+        
+        /* Forzar los estilos del botón salir */
+        .btn-salir {
+        position: absolute;
+        background-color: #000 !important;
+        color: white !important;
+        border: 2px solid #000 !important;
+        top: 10px; /* Espacio desde el borde superior */
+        right: 10px; /* Espacio desde el borde derecho */
+        transition: background-color 0.3s ease, color 0.3s ease;
+        width: 130px !important; /* Modifica este valor para cambiar el ancho */
+        height: 50px !important; /* Modifica este valor para cambiar el largo */
+        font-size: 20px !important; /* Tamaño de la letra */
+        font-weight: bold; /* Grosor del texto */
+       }
+
+        .btn-salir:hover {
+            background-color: red !important; /* Fondo celeste en hover */
+            color: white !important; /* Texto blanco en hover */
+        } 

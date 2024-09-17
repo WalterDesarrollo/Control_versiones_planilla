@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   <h:head>
+        <title>Menu</title>
+        <h:outputStylesheet name ="menu.css" library="css"/>
+    </h:head>
+   
+    
+    <h:body>
+        <div class="login-container">
+            <h:form>
+                <h1>CONTROL DE PERSONAL ´PLANTACIONES NAHUALATE´</h1>
+                <br/>
+                <div class="nav-flotante">
+                    <!-- Botones del menú centrados -->
+                    <ul>
+                        <li>
+                            <p:menuButton value="Empleados">
+                                <p:menuitem value="Ingreso de Empleados" action="Empleados.xhtml"/>
+                                <p:menuitem value="Empleados Registrados" action="VisualizarEmpleados.xhtml"/>
+                            </p:menuButton>
+                        </li>
+                        <li>
+                            <p:menuButton value="Asistencia">
+                                <p:menuitem value="Registro de Asistencia" action="Asistencia.xhtml"/>
+                                <p:menuitem value="Ver Asistencia" action="VisualizarEmpleados.xhtml"/>
+                            </p:menuButton>
+                        </li>
+                        <li>
+                            <p:menuButton value="Usuarios">
+                                <p:menuitem value="Ingreso de Usuarios" action="Usuarios.xhtml"/>
+                                <p:menuitem value="Usuarios Registrados" action="VisualizarUsuarios.xhtml"/>
+                            </p:menuButton>
+                        </li>
+                    </ul>
+                    <!-- Botón salir alineado a la derecha -->
+                    <ul>
+                        <li>
+                           <p:commandButton styleClass="btn-salir" id="btnSalir" value="Salir" action="Login.xhtml"/>
+                        </li>
+                    </ul>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>

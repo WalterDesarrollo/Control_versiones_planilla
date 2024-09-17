@@ -1,0 +1,105 @@
+body {
+                background-color: #000; /* Fondo negro */
+                font-family: Arial, sans-serif;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            /* Contenedor principal del formulario */
+            .login-box {
+                background-color: #000; /* Fondo oscuro */
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                width: 400px;
+                text-align: center;
+                transition: background-color 0.3s; /* Transición para hover */
+            }
+
+            .login-box:hover {
+               background-color: #333; /* Gris claro */
+            }
+
+            .login-box h1 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #fff;
+            }
+
+            /* Estilo para el formulario con el borde redondeado */
+            .form-container {
+                padding: 20px;
+                background-color: #fff; /* Fondo blanco */
+                border-radius: 15px; /* Bordes redondeados */
+                border: 2px solid #555; /* Añadir un borde gris */
+                margin-bottom: 15px;
+            }
+
+            /* Estilo para los inputs y centrado */
+            .login-input {
+                width: 100%; /* Hacer que los campos de texto ocupen el 100% del contenedor */
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid #ccc; /* Cambiar el borde para que coincida con el fondo blanco */
+                background-color: #fff; /* Fondo blanco */
+                color: #000; /* Texto negro */
+            }
+
+            /* Botón de inicio de sesión */
+            .login-button {
+                background-color: #007bff;
+                border: none;
+                padding: 10px;
+                color: white;
+                border-radius: 5px; /* Añadir bordes redondeados */
+                width: 100%; /* Hacer que el botón ocupe el 100% del contenedor */
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s; /* Transición para hover */
+            }
+
+            .login-button:hover {
+                background-color: #0056b3; /* Efecto hover */
+            }
+
+            .forgot-password {
+                margin-top: 15px;
+                font-size: 14px;
+            }
+
+            .forgot-password a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+            .forgot-password a:hover {
+                text-decoration: underline;
+            }
+
+            /* Mensajes de error o éxito */
+            .mensaje-error {
+                background-color: #ffcccc;
+                color: #cc0000;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .mensaje-exito {
+                background-color: #ccffcc;
+                color: #006600;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .logo img {
+                width: 150px; /* Cambia este valor para aumentar el tamaño de la imagen */
+                height: 150px; /* Asegúrate de mantener la proporción con el mismo valor de altura */
+                border-radius: 50%; /* Mantén los bordes redondeados para que la imagen siga siendo circular */
+            }

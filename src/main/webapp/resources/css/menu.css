@@ -1,0 +1,119 @@
+  body {
+            background-color: #000; /* Fondo negro */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            max-height: fit-content;
+        }
+
+        .login-container h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .nav-flotante {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border-bottom: 2px solid #00BFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-flotante ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-flotante ul:first-child {
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .nav-flotante ul:last-child {
+            justify-content: flex-end;
+        }
+
+        .nav-flotante li {
+            margin-right: 20px;
+        }
+
+        .nav-flotante a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-flotante a:hover {
+            color: #ccc;
+        }
+
+        /* Estilos personalizados para los p:menuButton */
+        .ui-menubutton .ui-button {
+            border: #000;
+            background-color: black;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .ui-menubutton .ui-button:hover {
+            background-color: #00BFFF;
+            color: black;
+        }
+
+        .ui-menuitem-link {
+            background-color: black;
+            color: white;
+            border: 1px solid #00BFFF;
+            padding: 0.5rem 1rem;
+            text-align: left;
+            border-radius: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .ui-menuitem-link:hover {
+            background-color: #00BFFF;
+            color: white;
+            border: 1px solid white;
+        }
+
+        /* Forzar los estilos del botón salir */
+        .btn-salir {
+            background-color: #000 !important;
+            color: white !important;
+            border: 2px solid #000 !important;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            width: 125px !important;
+            height: 40px !important;
+        }
+
+        .btn-salir:hover {
+            background-color: red !important; /* Fondo celeste en hover */
+            color: white !important; /* Texto blanco en hover */
+        }

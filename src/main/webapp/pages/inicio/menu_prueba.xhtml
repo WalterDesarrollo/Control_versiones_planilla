@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Inicio de Sesion</title>
+        <style>
+            body {
+                background-color: #000; /* Fondo negro */
+                font-family: Arial, sans-serif;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            /* Contenedor principal del formulario */
+            .login-box {
+                background-color: #000; /* Fondo oscuro */
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                width: 400px;
+                text-align: center;
+                transition: background-color 0.3s; /* Transición para hover */
+            }
+
+            .login-box:hover {
+               background-color: #333; /* Gris claro */
+            }
+
+            .login-box h1 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #fff;
+            }
+
+            /* Estilo para el formulario con el borde redondeado */
+            .form-container {
+                padding: 20px;
+                background-color: #fff; /* Fondo blanco */
+                border-radius: 15px; /* Bordes redondeados */
+                border: 2px solid #555; /* Añadir un borde gris */
+                margin-bottom: 15px;
+            }
+
+            /* Estilo para los inputs y centrado */
+            .login-input {
+                width: 100%; /* Hacer que los campos de texto ocupen el 100% del contenedor */
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid #ccc; /* Cambiar el borde para que coincida con el fondo blanco */
+                background-color: #fff; /* Fondo blanco */
+                color: #000; /* Texto negro */
+            }
+
+            /* Botón de inicio de sesión */
+            .login-button {
+                background-color: #007bff;
+                border: none;
+                padding: 10px;
+                color: white;
+                border-radius: 5px; /* Añadir bordes redondeados */
+                width: 100%; /* Hacer que el botón ocupe el 100% del contenedor */
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s; /* Transición para hover */
+            }
+
+            .login-button:hover {
+                background-color: #0056b3; /* Efecto hover */
+            }
+
+            .forgot-password {
+                margin-top: 15px;
+                font-size: 14px;
+            }
+
+            .forgot-password a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+            .forgot-password a:hover {
+                text-decoration: underline;
+            }
+
+            /* Mensajes de error o éxito */
+            .mensaje-error {
+                background-color: #ffcccc;
+                color: #cc0000;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .mensaje-exito {
+                background-color: #ccffcc;
+                color: #006600;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .logo img {
+                width: 150px; /* Cambia este valor para aumentar el tamaño de la imagen */
+                height: 150px; /* Asegúrate de mantener la proporción con el mismo valor de altura */
+                border-radius: 50%; /* Mantén los bordes redondeados para que la imagen siga siendo circular */
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <!-- Contenedor del formulario con el estilo oscuro -->
+        <div class="login-box">
+            <div class="logo">
+                <p:graphicImage name="images/nuevo_inicio.png" alt="Login Icon" />
+            </div>
+            <h1>INICIO DE SESION</h1>  
+            
+            <h:form>
+                <!-- Mensajes de validación -->
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+
+                <!-- Contenedor con fondo blanco y borde redondeado -->
+                <div class="form-container">
+                    <!-- Campos del formulario -->
+                    <p:panelGrid columns="1" style="width: 100%; text-align: center;">
+                        <p:inputText id="username" value="#{loginUI.loginDTO.username}" 
+                                     required="true" requiredMessage="El usuario es obligatorio" 
+                                     styleClass="login-input" placeholder="Ingrese su Usuario"/>
+
+                        <p:password id="password" value="#{loginUI.loginDTO.password}" 
+                                    required="true" requiredMessage="La contraseña es obligatoria" 
+                                    styleClass="login-input" placeholder="Ingrese su Contraseña"/>
+                    </p:panelGrid>
+                    
+                    <br />
+
+                    <!-- Botón de inicio de sesión -->
+                    <p:commandButton id="btnLogin" value="Iniciar Sesión" 
+                                     action="#{loginUI.validarLogin}" 
+                                     update="@form" styleClass="login-button"/>
+                </div>
+
+                <!-- Enlace de contraseña olvidada -->
+                <div class="forgot-password">
+                    <h:outputLink value="forgot-password.xhtml">Olvidaste tu contraseña?</h:outputLink>
+                </div>
+
+                <!-- Mensajes de éxito o error -->
+                <h:panelGroup id="mensajePanel" layout="block">
+                    <h:outputText value="#{loginUI.mensaje}" rendered="#{not empty loginUI.mensaje}"
+                                  styleClass="#{loginUI.mensaje.startsWith('Error') ? 'mensaje-error' : 'mensaje-exito'}"/>
+                </h:panelGroup>
+            </h:form>
+        </div>
+    </h:body>
+</html>

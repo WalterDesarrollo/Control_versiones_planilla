@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Registro de Usuarios</title>
+         <h:outputStylesheet name ="user.css" library="css"/>
+    </h:head>
+    
+    <h:body>
+        <div class="container">
+            <!-- Componente para mostrar los mensajes -->
+            <p:growl id="growl" showDetail="true" life="5000" />
+
+            <!-- Botón Volver a Menú -->
+            <h:form>
+                <p:commandButton styleClass="back-button" id="btnMeu" value="Volver a Menú" action="MenuInicio.xhtml" process="@this" />
+            </h:form>
+
+            <!-- Formulario de Registro -->
+            <div class="form-container">
+                <h1>Registro de Usuarios</h1>
+                <h:form id="registroForm">
+                    <h:outputLabel for="username" value="Username" />
+                    <h:inputText id="username" value="#{bkn_Usuarios.datosInsert.username}" required="true" requiredMessage="El username es obligatorio." />
+                    <h:message for="username" style="color:red" />
+                    
+                    <h:outputLabel for="password" value="Password" />
+                    <h:inputSecret id="password" value="#{bkn_Usuarios.datosInsert.password}" required="true" requiredMessage="La contraseña es obligatoria." />
+                    <h:message for="password" style="color:red" />
+                    
+                    <h:inputSecret id="confirmPassword" value="#{bkn_Usuarios.confirmPassword}" required="true" requiredMessage="Confirme su contraseña.">
+                        <f:passThroughAttribute name="placeholder" value="Confirme su Contraseña" />
+                    </h:inputSecret>
+                    <h:message for="confirmPassword" style="color:red" />
+                   
+                    <h:outputLabel for="nombre" value="Nombre" />
+                    <h:inputText id="nombre" value="#{bkn_Usuarios.datosInsert.nombre}" required="true" requiredMessage="El nombre es obligatorio." />
+                    <h:message for="nombre" style="color:red" />
+                    
+                    <h:outputLabel for="apellido" value="Apellido" />
+                    <h:inputText id="apellido" value="#{bkn_Usuarios.datosInsert.apellido}" required="true" requiredMessage="El apellido es obligatorio." />
+                    <h:message for="apellido" style="color:red" />
+                    
+                    <h:outputLabel for="email" value="Email" />
+                    <h:inputText id="email" value="#{bkn_Usuarios.datosInsert.email}" required="true" requiredMessage="El correo electrónico es obligatorio." />
+                    <h:message for="email" style="color:red" />
+                    
+                    <!-- Botón que guarda los datos y actualiza el growl y el formulario -->
+                    <p:commandButton id="guardarBtn" value="Guardar" action="#{bkn_Usuarios.validarRegistro}" update="growl registroForm" process="@form" />
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>

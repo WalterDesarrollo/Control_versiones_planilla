@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registro de Usuarios</title>
+    </h:head>
+    
+    <h:body>
+        <div >
+            <!-- Formulario de Registro -->
+            <div >
+                <h1>Registro de Usuarios</h1>
+                <h:form>
+                    <h:outputLabel for="username" value="Username:" />
+                    <h:inputText id="username" value="#{bkn_Usuarios.datosInsert.username}" required="true" />
+                    
+                    <h:outputLabel for="password" value="Password:" />
+                    <h:inputSecret id="password" value="#{bkn_Usuarios.datosInsert.password}" required="true" />
+                    
+                    <h:outputLabel for="nombre" value="Nombre:" />
+                    <h:inputText id="nombre" value="#{bkn_Usuarios.datosInsert.nombre}" required="true" />
+                    
+                    <h:outputLabel for="apellido" value="Apellido:" />
+                    <h:inputText id="apellido" value="#{bkn_Usuarios.datosInsert.apellido}" required="true" />
+                    
+                    <h:outputLabel for="email" value="Email:" />
+                    <h:inputText id="email" value="#{bkn_Usuarios.datosInsert.email}" required="true" />
+                    
+                    <p:commandButton style="background-color: #45a049; width: 150px;" value="Guardar" action="#{bkn_Usuarios.insertaDatos}" oncomplete="window.location.reload();" />
+
+                </h:form>
+                <br></br>    
+                <h:form>
+                    <p:commandButton style="background-color: #45a049; width: 150px;" id="btnMeu" value="Volver a Menú" action="MenuInicio.xhtml" />
+                </h:form>
+            </div>
+           <br></br>    
+           
+            <!-- Tabla que muestra los datos -->
+            <div >
+                <p:dataTable id="tblLista" value="#{bkn_Usuarios.lista}" var="item" >
+                    <p:column headerText="Id">
+                        <p:outputLabel value="#{item.idUsuario}" />
+                    </p:column>
+                    <p:column headerText="Username">
+                        <p:outputLabel value="#{item.username}" />
+                    </p:column>
+                    <p:column headerText="Password">
+                        <p:outputLabel value="#{item.password}" /> 
+                    </p:column>      
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{item.nombre}" /> 
+                    </p:column>   
+                    <p:column headerText="Apellido">
+                        <p:outputLabel value="#{item.apellido}" /> 
+                    </p:column>  
+                    <p:column headerText="Email">
+                        <p:outputLabel value="#{item.email}" /> 
+                    </p:column>  
+                    <p:column headerText="Fecha">
+                        <p:outputLabel value="#{item.fechaRegistro}" /> 
+                    </p:column> 
+                </p:dataTable>                             
+            </div>
+        </div>
+    </h:body>
+</html>

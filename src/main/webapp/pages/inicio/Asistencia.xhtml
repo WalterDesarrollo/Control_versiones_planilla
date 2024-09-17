@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+           
+
+
+ <h:head>
+        <title>Asistencia de Empleados</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .asistencia-container {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 400px;
+            }
+            .asistencia-container h1 {
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+            .asistencia-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            .asistencia-container input[type="text"],
+            .asistencia-container input[type="date"],
+            .asistencia-container input[type="time"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            .asistencia-container input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                border: none;
+                border-radius: 3px;
+                color: white;
+                font-size: 16px;
+            }
+            .asistencia-container input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+            .hora-entrada-salida {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+            .hora-entrada-salida label {
+                width: 45%;
+            }
+            .hora-entrada-salida input[type="time"] {
+                width: 45%;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="asistencia-container">
+            <h1>Asistencia de Empleados</h1>
+            <h:form>
+                <h:outputLabel for="asistenciaId" value="Asistencia ID:" />
+                <h:inputText id="asistenciaId" value="#{asistenciaBean.asistenciaId}" required="true" />
+                
+                <h:outputLabel for="empleadoId" value="Empleado ID:" />
+                <h:inputText id="empleadoId" value="#{asistenciaBean.empleadoId}" required="true" />
+                
+                <h:outputLabel for="fecha" value="Fecha:" />
+                <h:inputText id="fecha" value="#{asistenciaBean.fecha}" required="true" />
+                
+                <div class="hora-entrada-salida">
+                    <h:outputLabel for="horaEntrada" value="Hora de Entrada:" />
+                    <h:inputText id="horaEntrada" value="#{asistenciaBean.horaEntrada}" required="true" />
+                    
+                    <h:outputLabel for="horaSalida" value="Hora de Salida:" />
+                    <h:inputText id="horaSalida" value="#{asistenciaBean.horaSalida}" required="true" />
+                </div>
+                
+                <h:outputLabel for="horasTrabajadas" value="Horas Trabajadas:" />
+                <h:inputText id="horasTrabajadas" value="#{asistenciaBean.horasTrabajadas}" required="true" />
+                
+                <h:commandButton value="Guardar" action="#{asistenciaBean.guardar}" />
+            </h:form>
+        </div>
+    </h:body>
+</html>

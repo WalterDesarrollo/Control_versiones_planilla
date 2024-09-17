@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Empleado</title>
+        <style>
+            body {
+                background-color: #000; /* Fondo negro */
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
+
+            .container {
+                display: flex;
+                justify-content: flex-start;
+                padding: 20px;
+                position: relative; /* Para posicionar los botones */
+            }
+
+            .login-container {
+                background-color: rgba(50, 50, 50, 0.8); /* Color gris traslúcido */
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                width: 50%;
+                transition: background-color 0.3s ease; /* Efecto hover */
+            }
+
+            .login-container:hover {
+                background-color: rgba(0, 0, 0, 0.9); /* Color negro al hacer hover */
+            }
+
+            .barcode-container {
+                width: 30%; /* Asegura que la tabla no sea tan ancha */
+                padding: 0;
+                background-color: transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: auto;
+                margin-top: 20px; /* Espacio entre el formulario y el código de barras */
+            }
+
+            .barcode-container p {
+                margin: 0;
+            }
+
+            .login-container h1 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                color: white; /* Color blanco para el título */
+            }
+
+            .login-container label {
+                display: block;
+                margin-bottom: 5px;
+                color: white; /* Color blanco para las etiquetas */
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="date"],
+            .login-container input[type="number"] {
+                width: 100%; /* Los campos de entrada ocupan el 100% del contenedor */
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                background-color: rgba(255, 255, 255, 0.1); /* Fondo traslúcido */
+                color: white; /* Texto blanco */
+            }
+
+            h1 {
+                text-align: justify;
+                margin: 125px; /* correr texto */
+            }
+
+           
+       
+        </style>
+    </h:head>
+
+    <h:body>
+        <br/><br/><br/>
+        <div class="container">
+            <div class="login-container">
+                <h1>Registro de Empleados</h1>
+                <h:form id="form">
+                    <p:messages id="messages" showDetail="true" closable="true" />
+
+                    <h:outputLabel for="codigoEmpleado" value="Código Empleado:" />
+                    <h:inputText id="codigoEmpleado" value="#{bkn_Empleados.datosInsert.codigoEmpleado}" required="true" />
+
+                    <h:outputLabel for="nombre" value="Nombre:" />
+                    <h:inputText id="nombre" value="#{bkn_Empleados.datosInsert.nombre}" required="true" />
+
+                    <h:outputLabel for="apellido" value="Apellido:" />
+                    <h:inputText id="apellido" value="#{bkn_Empleados.datosInsert.apellido}" required="true" />
+
+                    <h:outputLabel for="correoElectronico" value="Correo Electrónico:" />
+                    <h:inputText id="correoElectronico" value="#{bkn_Empleados.datosInsert.email}" required="true" />
+
+                    <h:outputLabel for="telefono" value="Teléfono:" />
+                    <h:inputText id="telefono" value="#{bkn_Empleados.datosInsert.telefono}" required="true" />
+
+                    <h:outputLabel for="direccion" value="Dirección:" />
+                    <h:inputText id="direccion" value="#{bkn_Empleados.datosInsert.direccion}" required="true" />
+
+                    <h:outputLabel for="salario" value="Salario:" />
+                    <h:inputText id="salario" value="#{bkn_Empleados.datosInsert.salarioBase}" required="true" />
+
+                    <h:outputLabel for="rol" value="Rol:" />
+                    <h:inputText id="rol" value="#{bkn_Empleados.datosInsert.rol}" required="true" />
+
+                    <h:outputLabel for="estado" value="Activo:" />
+                    <h:selectBooleanCheckbox id="estado" value="#{bkn_Empleados.datosInsert.activo}" required="true" />
+
+                    <br/><br/>
+
+                    <p:commandButton value="Guardar"
+                                     action="#{bkn_Empleados.insertaDatos}"
+                                     update="@form :barcodeContainer messages" 
+                                     style="width: 100%; background-color: deepskyblue; color: white; border: none; 
+                                     border-radius: 3px; padding: 10px; cursor: pointer; transition: background-color 0.3s;"
+                                     onmouseover="this.style.backgroundColor='gray';"
+                                     onmouseout="this.style.backgroundColor='deepskyblue';"/> 
+                </h:form>
+
+                <br/>
+
+                <!-- Botones en la parte superior derecha -->
+                <div class="top-right-buttons" style="position: absolute; top: 20px; right: 20px;">
+                    <h:form>
+                        <p:commandButton id="btnMenu" value="Volver a Menú" 
+                                         style="background-color: #000; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer;"
+                                         onmouseover="this.style.backgroundColor='red';"
+                                         onmouseout="this.style.backgroundColor='#000';"
+                                         action="MenuInicio.xhtml" />
+                    </h:form>
+                    <br/>
+                    <h:form>
+                        <p:commandButton id="btnPdf" value="Descargar PDF" 
+                                         style="background-color: #000; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer;"
+                                         onmouseover="this.style.backgroundColor='gray';"
+                                         onmouseout="this.style.backgroundColor='#000';"
+                                         action="#{bkn_Empleados.generarPDF}" ajax="false" icon="pi pi-file-pdf"/>
+                    </h:form>
+                </div>
+            </div>
+
+            <!-- Contenedor para mostrar el código de barras con espacio extra -->
+            <div class="barcode-container">
+                <h:panelGroup id="barcodeContainer" layout="block">
+                    <p:panel header="Código de Barras del Empleado" rendered="#{not empty bkn_Empleados.barcodeImagePath}">
+                        <p:graphicImage value="/resources/barcodes/#{bkn_Empleados.codigoEmpleadoGenerado}.png" />
+                        <h:outputText value="#{bkn_Empleados.codigoEmpleadoGenerado}" />
+                    </p:panel>
+                </h:panelGroup>
+            </div>
+        </div>
+    </h:body>
+</html>

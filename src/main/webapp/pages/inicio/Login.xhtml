@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+  
+    <h:head>
+        <title>Inicio de Sesion</title>
+        <h:outputStylesheet name ="dark-loggin.css" library="css"/>
+    </h:head>
+
+    
+    <h:body>
+        <!-- Contenedor del formulario con el estilo oscuro -->
+        <div class="login-box">
+            <div class="logo">
+                <p:graphicImage name="images/nuevo_inicio.png" alt="Login Icon" />
+            </div>
+            <h1>INICIO DE SESION</h1>  
+            
+            <h:form>
+                <!-- Mensajes de validación -->
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                
+                <!-- Contenedor con fondo blanco y borde redondeado -->
+                <div class="form-container">
+                    <!-- Campos del formulario -->
+                    <p:panelGrid columns="1"  style="width: 100%; text-align: center; background-color: #555; ">
+                        <p:inputText id="username" value="#{loginUI.loginDTO.username}" 
+                                     required="true" requiredMessage="El usuario es obligatorio" 
+                                     styleClass="login-input" placeholder="Ingrese su Usuario"/>
+                        
+                        <p:password id="password" value="#{loginUI.loginDTO.password}" 
+                                    required="true" requiredMessage="La contraseña es obligatoria" 
+                                    styleClass="login-input" placeholder="Ingrese su Contraseña"/>
+                    </p:panelGrid>
+                    
+                    <br />
+                    <!-- Botón de inicio de sesión -->
+                    <p:commandButton id="btnLogin" value="Iniciar Sesión" 
+                                     action="#{loginUI.validarLogin}" 
+                                     update="@form" styleClass="login-button"/>
+                </div>
+                
+                <!-- Enlace de contraseña olvidada -->
+                <div class="forgot-password">
+                    <h:outputLink value="forgot-password.xhtml">Olvidaste tu contraseña?</h:outputLink>
+                </div>
+                
+                <!-- Mensajes de éxito o error -->
+                <h:panelGroup id="mensajePanel" layout="block">
+                    <h:outputText value="#{loginUI.mensaje}" rendered="#{not empty loginUI.mensaje}"
+                                  styleClass="#{loginUI.mensaje.startsWith('Error') ? 'mensaje-error' : 'mensaje-exito'}"/>
+                </h:panelGroup>
+            </h:form>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>ASISTENCIA</title>
+        <style>
+          .login-container {
+  background-color: #f9f9f9; /* fondo claro */
+  padding: 20px;
+  border-radius: 10px; /* bordes redondeados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* sombra leve */
+}
+
+.tabla-asistencia {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd; /* borde gris claro */
+}
+
+.tabla-asistencia th {
+  background-color: #337ab7; /* fondo azul claro */
+  color: #ffffff; /* texto blanco */
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #337ab7; /* borde azul claro */
+}
+
+.tabla-asistencia td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* borde gris claro */
+}
+
+.column-header {
+  font-weight: bold;
+  color: #337ab7; /* texto azul claro */
+}
+
+.tabla-asistencia tr:nth-child(even) {
+  background-color: #f2f2f2; /* fondo gris claro */
+}
+
+.tabla-asistencia tr:hover {
+  background-color: #eaeaea; /* fondo gris claro hover */
+  cursor: pointer; /* cursor mano */
+}
+        </style>
+    </h:head>
+    
+    <h:body>
+        <h:form>
+            <div class="login-container">
+                <h1>Asistencia</h1>
+                <p:dataTable class="tabla-asistencia" id="tblAsistencia" value="#{bkn_Asistencia.lista}" var="item">
+                    <p:column headerText="Asistencia ID" styleClass="column-header">
+                        <p:outputLabel value="#{item.asistenciaId}" />
+                    </p:column>
+                    <p:column headerText="Empleado ID" styleClass="column-header">
+                        <p:outputLabel value="#{item.empleadoId}" />
+                    </p:column>
+                    <p:column headerText="Fecha" styleClass="column-header">
+                        <p:outputLabel value="#{item.fecha}" />
+                    </p:column>
+                    <p:column headerText="Hora de Entrada" styleClass="column-header">
+                        <p:outputLabel value="#{item.horaEntrada}" />
+                    </p:column>
+                    <p:column headerText="Hora de Salida" styleClass="column-header">
+                        <p:outputLabel value="#{item.horaSalida}" />
+                    </p:column>
+                    <p:column headerText="Horas Trabajadas" styleClass="column-header">
+                        <p:outputLabel value="#{item.horasTrabajadas}" />
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </h:body>
+</html>
