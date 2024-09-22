@@ -1,0 +1,105 @@
+
+body {
+    background-image: url("#{resource['images:limonero.jpg']}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal del formulario */
+.login-box {
+    background-color: transparent !important; /* Fondo transparente */
+    padding: 30px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    width: 400px !important;
+    text-align: center !important;
+}
+
+/* Eliminado el efecto hover */
+/* .login-box:hover { ... } */
+
+.login-box h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+/* El resto del código permanece sin cambios */
+.form-container {
+    padding: 20px;
+    background-color: #ccc;
+    border-radius: 15px;
+    border: 2px solid #555;
+    margin-bottom: 15px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+}
+
+.login-button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.forgot-password {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.mensaje-error {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.mensaje-exito {
+    background-color: #ccffcc;
+    color: #006600;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.logo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}

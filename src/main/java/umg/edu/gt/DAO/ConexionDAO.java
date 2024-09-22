@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author X
- */
+
 public class ConexionDAO {
     
     private String url = "jdbc:mysql://localhost:3306/planilla"; // URL de la base de datos

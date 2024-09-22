@@ -1,6 +1,7 @@
   body {
             font-family: Arial, sans-serif !important;
-            background-color: #121212 !important; /* Fondo oscuro */
+            background-image: url("#{resource['images:mango.jpg']}")!important;
+            background-size: cover !important;
             color: #ffffff !important; /* Texto blanco */
             margin: 0 !important;
             display: flex !important;

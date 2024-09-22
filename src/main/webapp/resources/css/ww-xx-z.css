@@ -1,37 +1,37 @@
-  /* Estilo para el cuerpo de la página */
+    /* Estilo para el cuerpo de la página */
         body {
-            background-image: url("#{resource['images:mango.jpg']}");
-            background-size: cover;
-            color: white; /* Texto blanco para asegurarnos de que sea legible */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100vh;
-            display: flex;
+            background-image: url("#{resource['images:mango.jpg']}")!important;
+            background-size: cover !important;
+            color: white !important; /* Texto blanco para asegurarnos de que sea legible */
+            font-family: Arial, sans-serif !important;
+            margin: 0 !important;
+            height: 100vh !important;
+            display: flex !important;
             justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            position: relative; /* Relativo para que el botón se posicione correctamente */
+            align-items: center !important;
+            flex-direction: column !important;
+            position: relative !important; /* Relativo para que el botón se posicione correctamente */
         }
 
         /* Centrar el título */
         h1 {
-            text-align: center;
-            margin-bottom: 20px;
+            text-align: center !important;
+            margin-bottom: 20px !important;
         }
 
         /* Contenedor de la tabla */
         .data-table {
-            width: 96%; /* Ajusta el ancho de la tabla */
-           margin: 50px auto 0 auto; /* Añadir un margen superior de 50px para separar del botón */
-           color: white;
+            width: 96% !important; /* Ajusta el ancho de la tabla */
+           margin: 50px auto 0 auto !important; /* Añadir un margen superior de 50px para separar del botón */
+           color: white !important;
         }
 
         /* Estilo general de la tabla */
         .styled-table {
-            border-collapse: collapse;
-            width: 100%;
-            text-align: left;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse !important;
+            width: 100% !important;
+            text-align: left !important;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
         }
 
         /* Estilo para los encabezados de la tabla */
@@ -102,5 +102,3 @@
             color: white !important; /* Texto blanco en hover */
         } 
         
-      
-

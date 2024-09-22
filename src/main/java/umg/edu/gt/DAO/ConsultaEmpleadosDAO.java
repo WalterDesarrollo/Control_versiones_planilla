@@ -70,4 +70,37 @@ public void insertEmpleado(Connection conexion, DatosEmpleadosDTO empleado) {
     }
 }
 
+ // Método para buscar un empleado por el código de barras (Codigo_empleado)
+    public DatosEmpleadosDTO findEmpleadoByCodigo(int codigoEmpleado) throws SQLException, Exception {
+        DatosEmpleadosDTO empleado = null;
+        String sql = "SELECT * FROM empleados WHERE Codigo_empleado = ?";
+
+        try (Connection conexion = con.conexionMysql();
+             PreparedStatement pst = conexion.prepareStatement(sql)) {
+             
+            pst.setInt(1, codigoEmpleado);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    empleado = new DatosEmpleadosDTO();
+                    empleado.setEmpleadoId(rs.getInt("empleado_id"));
+                    empleado.setCodigoEmpleado(rs.getInt("Codigo_empleado"));
+                    empleado.setNombre(rs.getString("nombre"));
+                    empleado.setApellido(rs.getString("apellido"));
+                    empleado.setEmail(rs.getString("email"));
+                    empleado.setTelefono(rs.getString("telefono"));
+                    empleado.setDireccion(rs.getString("direccion"));
+                    empleado.setFechaContratacion(rs.getDate("fecha_contratacion"));
+                    empleado.setSalarioBase(rs.getDouble("salario_base"));
+                    empleado.setRol(rs.getString("rol"));
+                    empleado.setActivo(rs.getBoolean("activo"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el empleado por código: " + e.getMessage());
+            throw new SQLException("Error al buscar el empleado: " + e.getMessage());
+        }
+        return empleado;
+    }
 }
+
+

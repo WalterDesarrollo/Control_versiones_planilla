@@ -7,7 +7,7 @@
   
     <h:head>
         <title>Inicio de Sesion</title>
-        <h:outputStylesheet name ="dark-loggin.css" library="css"/>
+        <h:outputStylesheet name ="mm-oo.css" library="css"/>
     </h:head>
 
     
@@ -15,7 +15,7 @@
         <!-- Contenedor del formulario con el estilo oscuro -->
         <div class="login-box">
             <div class="logo">
-                <p:graphicImage name="images/nuevo_inicio.png" alt="Login Icon" />
+                <p:graphicImage name="images/logo_inicio.png" alt="Login Icon" />
             </div>
             <h1>INICIO DE SESION</h1>  
             
@@ -28,7 +28,7 @@
                 <!-- Contenedor con fondo blanco y borde redondeado -->
                 <div class="form-container">
                     <!-- Campos del formulario -->
-                    <p:panelGrid columns="1"  style="width: 100%; text-align: center; background-color: #555; ">
+                    <p:panelGrid columns="1"  style="width: 100%; text-align: center; background-color: #ddd; ">
                         <p:inputText id="username" value="#{loginUI.loginDTO.username}" 
                                      required="true" requiredMessage="El usuario es obligatorio" 
                                      styleClass="login-input" placeholder="Ingrese su Usuario"/>

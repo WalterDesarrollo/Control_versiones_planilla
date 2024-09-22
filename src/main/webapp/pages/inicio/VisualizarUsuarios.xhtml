@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -7,40 +9,43 @@
 
     <h:head>
         <title>Lista de Usuarios</title>
-         <h:outputStylesheet name ="vis-us.css" library="css"/>
-       
+         <h:outputStylesheet name ="ww-xx-z.css" library="css"/>
     </h:head>
+    
+ 
 
     <h:body>
         <!-- Botón de "Salir" posicionado en la esquina superior derecha -->
-        <h:form style=" position: absolute;top: 10px;  right: 10px;  display: flex;flex-direction: column; 
-            justify-content: flex-end;align-items: flex-end;" >
+        <h:form style="position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end;">
             <p:commandButton styleClass="btn-salir" id="btvolver" value="Volver" action="MenuInicio.xhtml" />
         </h:form>
-       <br />   <br />   <br />   <br />   <br />   <br />
-       <br />   <br />   <br />   <br />   <br />   <br />
-       <br />   <br />   <br />   <br />   <br />   <br />
-        <h1>USUARIOS REGISTRADOS EN EL SISTEMA</h1>
+
         <br/>
 
         <!-- Tabla que muestra los datos -->
         <div class="data-table">
+            <h1>USUARIOS REGISTRADOS EN EL SISTEMA</h1>
             <p:dataTable id="tblLista" value="#{bkn_Usuarios.lista}" var="item" styleClass="styled-table">
                 <p:column headerText="Id">
                     <p:outputLabel value="#{item.idUsuario}" />
                 </p:column>
+
                 <p:column headerText="Username">
                     <p:outputLabel value="#{item.username}" />
                 </p:column>
+
                 <p:column headerText="Nombre">
                     <p:outputLabel value="#{item.nombre}" />
                 </p:column>
+
                 <p:column headerText="Apellido">
                     <p:outputLabel value="#{item.apellido}" />
                 </p:column>
+
                 <p:column headerText="Email">
                     <p:outputLabel value="#{item.email}" />
                 </p:column>
+
                 <p:column headerText="Fecha">
                     <p:outputLabel value="#{item.fechaRegistro}" />
                 </p:column>
