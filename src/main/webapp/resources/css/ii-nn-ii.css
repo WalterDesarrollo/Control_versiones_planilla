@@ -1,5 +1,6 @@
+ 
  body {
-            background-image: url("#{resource['images:limonero.jpg']}") !important;
+            background-image: url("#{resource['images:loggin.jpg']}") !important;
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
@@ -12,17 +13,21 @@
             height: 100vh !important;
             margin: 0 !important;
         }
-
-        .login-box {
+         .login-box {
             background-color: rgba(0, 0, 0, 0.5)!important;
             padding: 30px !important;
             border-radius: 30px !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2)!important;
             width: 400px !important;
             text-align: center!important;
+            transition: background-color 0.6s ease !important; /* Efecto hover */
         }
-
-        .login-box h1 {
+        
+         .login-box:hover {
+                background-color: rgba(0, 0, 0, 0.8) !important; /* Color negro al hacer hover */
+            }
+            
+.login-box h1 {
             margin-bottom: 20px!important;
             font-size: 24px !important;
             color: #fff !important;
@@ -105,7 +110,7 @@
         .emp-log img {
             width: 220px !important;
             height: 180px !important;
-            border-radius: 30% !important;
-            opacity: 0.7 !important;
+            border-radius: 20% !important;
+            opacity: 0.8 !important;
         }
         

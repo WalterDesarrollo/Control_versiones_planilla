@@ -16,6 +16,26 @@ public class AsistenciaDTO implements Serializable {
     private Time horaEntrada;
     private Time horaSalida;
     private BigDecimal horasTrabajadas;
+    private BigDecimal monto;
+    private BigDecimal total_devengado;
+
+    public BigDecimal getTotal_devengado() {
+        return total_devengado;
+    }
+
+    public void setTotal_devengado(BigDecimal total_devengado) {
+        this.total_devengado = total_devengado;
+    }
+    
+
+    public BigDecimal getMonto() {
+        return monto;
+    }
+
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
+    }
+    
 
     // Getters y Setters
     public int getAsistenciaId() {

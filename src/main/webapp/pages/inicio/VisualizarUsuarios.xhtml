@@ -21,11 +21,15 @@
         </h:form>
 
         <br/>
-
+        
+        
         <!-- Tabla que muestra los datos -->
         <div class="data-table">
             <h1>USUARIOS REGISTRADOS EN EL SISTEMA</h1>
+            
             <p:dataTable id="tblLista" value="#{bkn_Usuarios.lista}" var="item" styleClass="styled-table">
+                
+                
                 <p:column headerText="Id">
                     <p:outputLabel value="#{item.idUsuario}" />
                 </p:column>

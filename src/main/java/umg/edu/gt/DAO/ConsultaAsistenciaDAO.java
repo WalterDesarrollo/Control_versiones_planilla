@@ -1,5 +1,6 @@
 package umg.edu.gt.DAO;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,6 +41,8 @@ public class ConsultaAsistenciaDAO {
                 asistencia.setHoraEntrada(rs.getTime("hora_entrada"));
                 asistencia.setHoraSalida(rs.getTime("hora_salida"));
                 asistencia.setHorasTrabajadas(rs.getBigDecimal("horas_trabajadas"));
+                asistencia.setMonto(rs.getBigDecimal("monto"));
+                asistencia.setTotal_devengado(rs.getBigDecimal("total_devengado"));
                 lista.add(asistencia);
             }
         } catch (SQLException e) {
@@ -90,11 +93,15 @@ public class ConsultaAsistenciaDAO {
     
 //-------------------------------------------------------------------------------------------------------
  
-    //metodo para el registro de la hora de salida 
-  public void registrarSalida(int empleadoId, java.sql.Time horaSalida) throws SQLException, Exception {
-    String sql = "UPDATE asistencia SET hora_salida = ?, horas_trabajadas = ? WHERE empleado_id = ? AND hora_salida IS NULL";
+// Método para el registro de la hora de salida 
+public void registrarSalida(int empleadoId, java.sql.Time horaSalida) throws SQLException, Exception {
+    // Modificación del SQL para incluir el campo monto
+    String sql = "UPDATE asistencia SET hora_salida = ?, horas_trabajadas = ?, monto = ? WHERE empleado_id = ? AND hora_salida IS NULL";
+    
     try (Connection conexion = con.conexionMysql()) {
+        // Consulta para obtener la hora de entrada
         String consultaEntrada = "SELECT fecha, hora_entrada FROM asistencia WHERE empleado_id = ? AND hora_salida IS NULL";
+        
         try (PreparedStatement pstEntrada = conexion.prepareStatement(consultaEntrada)) {
             pstEntrada.setInt(1, empleadoId);
             try (ResultSet rs = pstEntrada.executeQuery()) {
@@ -109,20 +116,31 @@ public class ConsultaAsistenciaDAO {
                     Duration duracion = Duration.between(entrada, salida);
                     long minutosTrabajados = duracion.toMinutes();
                     
-                    // Calcular las horas trabajadas en el formato deseado
-                    int horas = (int) (minutosTrabajados / 60);
-                    int minutos = (int) (minutosTrabajados % 60);
-                    String horasFormateadas = String.format("%d.%02d", horas, minutos);
+                    // Calcular las horas trabajadas usando BigDecimal para precisión
+                    BigDecimal horasTrabajadas = BigDecimal.valueOf(minutosTrabajados)
+                            .divide(BigDecimal.valueOf(60), 2, BigDecimal.ROUND_HALF_UP); // Divide minutos por 60 y redondea
                     
-                    System.out.println("Horas trabajadas calculadas: " + horasFormateadas);
+                    System.out.println("Horas trabajadas calculadas: " + horasTrabajadas);
+
+                    // Obtener el monto diario del empleado desde la tabla empleados
+                    DatosEmpleadosDTO empleado = buscarEmpleadoPorCodigo(empleadoId);
+                    BigDecimal montoDiario = BigDecimal.ZERO;
                     
+                    if (empleado != null) {
+                        montoDiario = empleado.getMonto_diario(); // Obtener el monto diario del empleado
+                    } else {
+                        System.out.println("No se encontró el empleado con ID: " + empleadoId);
+                    }
+
+                    // Actualizar la salida, horas trabajadas y monto
                     try (PreparedStatement pst = conexion.prepareStatement(sql)) {
                         pst.setTime(1, horaSalida);
-                        pst.setString(2, horasFormateadas); // Guardamos como String para mantener el formato
-                        pst.setInt(3, empleadoId);
+                        pst.setBigDecimal(2, horasTrabajadas); // Inserta las horas trabajadas como BigDecimal
+                        pst.setBigDecimal(3, montoDiario); // Inserta el monto diario obtenido
+                        pst.setInt(4, empleadoId);
                         int filasActualizadas = pst.executeUpdate();
                         if (filasActualizadas > 0) {
-                            System.out.println("Salida y horas trabajadas registradas correctamente.");
+                            System.out.println("Salida, horas trabajadas y monto registrados correctamente.");
                         } else {
                             System.out.println("No se encontró un registro de entrada para actualizar la salida.");
                         }
@@ -136,6 +154,8 @@ public class ConsultaAsistenciaDAO {
         throw new SQLException("Error al registrar la salida: " + e.getMessage());
     }
 }
+
+
 
   //--------------------------------------------------------------------------------------------------
 
@@ -175,6 +195,8 @@ public class ConsultaAsistenciaDAO {
                     empleado.setCodigoEmpleado(rs.getInt("Codigo_empleado"));
                     empleado.setNombre(rs.getString("nombre"));
                     empleado.setApellido(rs.getString("apellido"));
+                    empleado.setMonto_diario(rs.getBigDecimal("monto_diario"));
+                    
                 }
             }
         } catch (SQLException e) {

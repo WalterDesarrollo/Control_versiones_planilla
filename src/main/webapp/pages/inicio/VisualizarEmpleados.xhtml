@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Registro de Empleados</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url("#{resource['images:limonero.jpg']}");
+                background-size: cover;
+                color: #000 !important; /* Texto negro */
+                margin: 0;
+                padding: 20px;
+            }
+
+            .container {
+                width: 40% !important;
+                margin: 0 auto !important;
+                background-color: #ffffff !important;
+                padding: 20px !important;
+                border-radius: 10px !important; /* Bordes redondeados */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+            }
+
+            h1 {
+                text-align: center !important;
+                margin-bottom: 20px !important;
+            }
+
+            .form-group {
+                margin-bottom: 15px !important;
+            }
+
+            .form-group label {
+                display: block !important;
+                margin-bottom: 5px !important;
+            }
+
+            .form-group input[type="text"] {
+                width: 100% !important;
+                padding: 10px !important;
+                border: 1px solid #ccc !important;
+                border-radius: 3px !important;
+            }
+
+            .form-group button {
+                width: 100% !important;
+                padding: 10px !important;
+                background-color: #4CAF50 !important;
+                border: none !important;
+                border-radius: 3px !important;
+                color: white !important;
+                font-size: 16px !important;
+            }
+
+            .form-group button:hover {
+                background-color: #45a049 !important;
+            }
+
+            .message {
+                text-align: center !important;
+                margin-top: 20px !important;
+                font-size: 18px !important;
+            }
+
+            .table-container {
+                margin-top: 40px !important; /* Aumentar el margen superior para separar del botón */
+                background-color: #ffffff !important; /* Fondo blanco para el contenedor de la tabla */
+                border-radius: 10px !important; /* Bordes redondeados */
+                padding: 20px !important; /* Espaciado interno */
+            }
+
+            .table-header {
+                text-align: center !important;
+                margin-bottom: 10px !important;
+                font-size: 24px !important; /* Tamaño de fuente grande para el encabezado */
+                color: #4CAF50 !important; /* Color del encabezado */
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important; /* Asegura que los bordes queden juntos */
+                margin-top: 10px !important;
+            }
+
+            th, td {
+                border: 2px solid #4CAF50 !important; /* Borde verde para columnas */
+                padding: 8px !important;
+                text-align: center !important; /* Centra el contenido de la tabla */
+            }
+
+            th {
+                background-color: #4CAF50 !important; /* Color de fondo de los encabezados */
+                color: white !important; /* Color de texto en los encabezados */
+            }
+
+            /* Color de fondo para filas pares */
+            tr:nth-child(even) {
+                background-color: #f2f2f2 !important;
+            }
+
+            /* Color de fondo al pasar el mouse sobre la fila */
+            tr:hover {
+                background-color: #ddd !important;
+            }
+
+        </style>
+    </h:head>
+
+    <h:body>
+        <!-- Formulario principal que contiene la tabla -->
+        <h:form id="mainForm">
+            
+         <p:commandButton
+             style="width: 130px; height: 50px;
+                    font-size: 20px; font-weight: bold;
+                    background-color: #4CAF50; color: white; "
+             id="btvolver" value="Volver" action="MenuInicio.xhtml" />
+             
+            <div class="table-container">
+                <h2 class="table-header">Empleados Registrados en el Sistema</h2>
+                <p:dataTable id="asistenciaTabla" 
+                             value="#{bkn_Empleados.lista}" 
+                             var="asistencia" 
+                             stripedRows="true" 
+                             style="margin-top:10px;"
+                             tableStyle="border: 2px solid #4CAF50;"> <!-- Borde verde para la tabla -->
+                    
+                    <p:column headerText="codigo Empleado">
+                        <h:outputText value="#{asistencia.codigoEmpleado}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{asistencia.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido">
+                        <h:outputText value="#{asistencia.apellido}" />
+                    </p:column>
+                    <p:column headerText="Identificacion">
+                        <h:outputText value="#{asistencia.identificacion}" />
+                    </p:column>
+                     <p:column headerText="Telefono">
+                        <h:outputText value="#{asistencia.telefono}" />
+                    </p:column>
+                     <p:column headerText="Direccion">
+                        <h:outputText value="#{asistencia.direccion}" />
+                    </p:column>
+                    <p:column headerText="Fecha Contratacion">
+                        <h:outputText value="#{asistencia.fechaContratacion}">
+                        <f:convertDateTime pattern="dd-MM-yy" />
+                        </h:outputText>
+                    </p:column>
+                     <p:column headerText="Rol">
+                        <h:outputText value="#{asistencia.rol}" />
+                    </p:column>
+                     <p:column headerText="Area">
+                        <h:outputText value="#{asistencia.area}" />
+                    </p:column> 
+                    <p:column headerText="Paga Diaria">
+                        <h:outputText value="#{asistencia.monto_diario}" />
+                    </p:column> 
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{asistencia.activo}" />
+                    </p:column> 
+                    
+                </p:dataTable>
+            </div>
+        </h:form>
+    </h:body>
+</html>

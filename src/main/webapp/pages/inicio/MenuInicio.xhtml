@@ -7,11 +7,29 @@
 
    <h:head>
         <title>Menu</title>
-        <h:outputStylesheet name ="menu.css" library="css"/>
+          <h:outputStylesheet name ="menu.css" library="css"/>
+        <style> 
+            body {
+                background-image: url("#{resource['images:limonero.jpg']}") !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+                background-attachment: fixed !important;
+                font-family: Arial, sans-serif !important;
+                color: #fff !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                height: 100vh !important;
+                margin: 0 !important;
+            }
+
+            
+        </style>
     </h:head>
     
     <h:body>
-        <div class="login-container">
+        <div >
             <h:form>
                 <div class="nav-flotante">
                     <!-- Botones del menú centrados -->
@@ -24,14 +42,14 @@
                         </li>
                         <li>
                             <p:menuButton value="Asistencia">
-                                <p:menuitem value="Registro de Asistencia" action="EscanerAsistencia.xhtml"/>
-                                <p:menuitem value="Ver Asistencia" action="VisualizarEmpleados.xhtml"/>
+                                <p:menuitem value="Registro de Asistencia" action="Lector_barra_automatico.xhtml"/>
+                                <p:menuitem value="Ver Asistencia" action="Tabla_Asistencia.xhtml"/>
                             </p:menuButton>
                         </li>
                         <li>
                             <p:menuButton value="Usuarios">
                                 <p:menuitem value="Ingreso de Usuarios" action="Usuarios.xhtml"/>
-                                <p:menuitem value="Usuarios Registrados" action="VisualizarUsuarios.xhtml"/>
+                                <p:menuitem value="Usuarios Registrados" action="VerUsuarios.xhtml"/>
                             </p:menuButton>
                         </li>
                     </ul>

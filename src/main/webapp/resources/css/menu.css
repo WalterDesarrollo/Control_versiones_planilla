@@ -1,19 +1,5 @@
   
-        body {
-    background-image: url("#{resource['images:mango.jpg']}");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
+  
         .login-container {
             background-color: #ffffff;
             padding: 20px 40px;

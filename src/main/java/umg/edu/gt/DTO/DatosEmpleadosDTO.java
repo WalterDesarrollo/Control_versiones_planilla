@@ -1,6 +1,7 @@
 package umg.edu.gt.DTO;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class DatosEmpleadosDTO implements Serializable {
@@ -10,32 +11,40 @@ public class DatosEmpleadosDTO implements Serializable {
     private int Codigo_empleado;
     private String nombre;
     private String apellido;
-    private String email;
+    private String identificacion;
     private String telefono;
     private String direccion;
     private Date fecha_contratacion;
-    private double salario_base;
-    private String rol;
+    private Rol rol; // Cambio a tipo Rol
+    private String area;
+    private BigDecimal monto_diario;
+
+  
     private boolean activo;
+
+    // Enum para definir los roles permitidos
+    public enum Rol {
+        Jornal, Planilla
+    }
 
     // Constructor por defecto
     public DatosEmpleadosDTO() {
     }
 
     // Constructor con parámetros
-    public DatosEmpleadosDTO(int empleadoId, int codigoEmpleado, String nombre, String apellido, String email, 
-                             String telefono, String direccion, Date fechaContratacion, double salarioBase, 
-                             String rol, boolean activo) {
+    public DatosEmpleadosDTO(int empleadoId, int codigoEmpleado, String nombre, String apellido, String identificacion,
+                             String telefono, String direccion, Date fechaContratacion, Rol rol, String area, BigDecimal monto_diario, boolean activo) {
         this.empleado_id = empleadoId;
         this.Codigo_empleado = codigoEmpleado;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.email = email;
+        this.identificacion = identificacion;
         this.telefono = telefono;
         this.direccion = direccion;
         this.fecha_contratacion = fechaContratacion;
-        this.salario_base = salarioBase;
         this.rol = rol;
+        this.area = area;
+        this.monto_diario = monto_diario;
         this.activo = activo;
     }
 
@@ -72,12 +81,12 @@ public class DatosEmpleadosDTO implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getEmail() {
-        return email;
+    public String getIdentificacion() {
+        return identificacion;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getTelefono() {
@@ -104,19 +113,11 @@ public class DatosEmpleadosDTO implements Serializable {
         this.fecha_contratacion = fechaContratacion;
     }
 
-    public double getSalarioBase() {
-        return salario_base;
-    }
-
-    public void setSalarioBase(double salarioBase) {
-        this.salario_base = salarioBase;
-    }
-
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 
@@ -128,21 +129,37 @@ public class DatosEmpleadosDTO implements Serializable {
         this.activo = activo;
     }
 
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+      public BigDecimal getMonto_diario() {
+        return monto_diario;
+    }
+
+    public void setMonto_diario(BigDecimal monto_diario) {
+        this.monto_diario = monto_diario;
+    }
     // Método toString() para facilitar la depuración
     @Override
     public String toString() {
         return "DatosEmpleadosDTO{" +
-               "empleadoId=" + empleado_id +
-               ", codigoEmpleado=" + Codigo_empleado +
-               ", nombre='" + nombre + '\'' +
-               ", apellido='" + apellido + '\'' +
-               ", email='" + email + '\'' +
-               ", telefono='" + telefono + '\'' +
-               ", direccion='" + direccion + '\'' +
-               ", fechaContratacion=" + fecha_contratacion +
-               ", salarioBase=" + salario_base +
-               ", rol='" + rol + '\'' +
-               ", activo=" + activo +
-               '}';
+                "empleadoId=" + empleado_id +
+                ", codigoEmpleado=" + Codigo_empleado +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", identificacion='" + identificacion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fechaContratacion=" + fecha_contratacion +
+                ", rol=" + rol +
+                ", area=" + area +
+                ", monto_diario=" + monto_diario +
+                ", activo=" + activo +
+                '}';
     }
 }

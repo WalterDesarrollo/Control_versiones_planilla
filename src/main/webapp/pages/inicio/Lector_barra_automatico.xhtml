@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registro de Asistencia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("#{resource['images:limonero.jpg']}");
+            background-size: cover;
+            color: #000 !important;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 40% !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+            padding: 20px !important;
+            border-radius: 30px !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+            background-color: rgba(255, 255, 255, 0.5) !important; /* Fondo traslúcido */
+        }
+
+        h1 {
+            text-align: center !important;
+            margin-bottom: 20px !important;
+        }
+
+        .form-group {
+            margin-bottom: 15px !important;
+        }
+
+        .table-container {
+            margin-top: 20px !important;
+            background-color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 20px !important;
+            background-color: rgba(255, 255, 255, 0.6) !important; /* Fondo traslúcido */
+        }
+
+        .table-header {
+            text-align: center !important;
+            margin-bottom: 10px !important;
+            font-size: 24px !important;
+            color: #4CAF50 !important;
+        }
+
+        table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            margin-top: 10px !important;
+            background-color: rgba(255, 255, 255, 0.6) !important; /* Fondo traslúcido */
+        }
+
+        th, td {
+            border: 2px solid #4CAF50 !important;
+            padding: 8px !important;
+            text-align: center !important;
+        }
+
+        th {
+            background-color: #4CAF50 !important;
+            color: white !important;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2 !important;
+        }
+
+        tr:hover {
+            background-color: #ddd !important;
+        }
+    </style>
+</h:head>
+
+    
+    
+<h:body>
+  
+     <!-- Botón "Volver"  -->
+     <h:form id="volverForm">
+     <p:commandButton
+             style="width: 130px; height: 50px;
+                    font-size: 20px; font-weight: bold;
+                    background-color: #4CAF50; color: white;
+                    border-radius: 15px;"
+             id="btvolver" value="Volver" action="MenuInicio.xhtml" />
+       </h:form>
+     
+    <h:form id="asistenciaForm">
+        
+        <div class="container">
+            <h1>Registro de Asistencia</h1>
+
+            <div class="form-group">
+                <h:outputLabel style=" font-size: 20px; font-weight: bold;" 
+                               for="codigoBarras" value="Ingreso del Codigo:" />
+                <h:inputText  style="width: 180px; height: 33px; border-radius: 15px;" 
+                             id="codigoBarras" 
+                             value="#{bkn_Asistencia.codigoBarras}" 
+                             required="true" 
+                             requiredMessage="El código de barras es obligatorio" 
+                             onkeyup="if (event.keyCode === 13) { procesarCodigoBarras(); }"/>
+                <h:message for="codigoBarras" style="color:red" />
+            </div>
+
+            <div class="form-group">
+               <p:commandButton  style="width: 130px; height: 50px;
+                    font-size: 20px; font-weight: bold;
+                    background-color: #4CAF50; color: white;
+                    border-radius: 15px;"
+                 id="procesarButton"
+                 value="Procesar"
+                 action="#{bkn_Asistencia.procesarCodigoBarras}"
+                 update="asistenciaTabla messages"
+                 oncomplete="document.getElementById('asistenciaForm:codigoBarras').value = '';" />
+
+            </div>
+
+            <h:panelGroup id="messages" layout="block">
+                <h:outputText value="#{bkn_Asistencia.mensaje}" styleClass="message" />
+            </h:panelGroup>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-header">Asistencia Reciente</h2>
+
+            <p:dataTable id="asistenciaTabla"
+                         value="#{bkn_Asistencia.lista}"
+                         var="asistencia"
+                         stripedRows="true"
+                         style="margin-top:10px;"
+                         tableStyle="border: 2px solid #4CAF50;">
+
+                <p:column headerText="No">
+                    <h:outputText value="#{asistencia.asistenciaId}"/>
+                </p:column>
+                <p:column headerText="Código Empleado">
+                    <h:outputText value="#{asistencia.codigoEmpleado}"/>
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{asistencia.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{asistencia.apellido}"/>
+                </p:column>
+
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{asistencia.fecha}">
+                        <f:convertDateTime pattern="dd-MM-yy"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Hora Entrada">
+                    <h:outputText value="#{asistencia.horaEntrada}"/>
+                </p:column>
+
+                <p:column headerText="Hora Salida">
+                    <h:outputText value="#{asistencia.horaSalida}"/>
+                </p:column>
+
+                <p:column headerText="Horas Trabajadas">
+                    <h:outputText value="#{asistencia.horasTrabajadas}"/>
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:form>
+
+    <script type="text/javascript">
+        function procesarCodigoBarras() {
+            let input = document.getElementById('asistenciaForm:codigoBarras');
+            if (input.value.trim() !== '') {
+                jsf.ajax.request(input, null, {
+                    execute: 'asistenciaForm',
+                    render: 'asistenciaTabla messages',
+                    onevent: function (data) {
+                        if (data.status === 'success') {
+                            input.value = ''; // Limpiar la casilla después de insertar
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</h:body>
+</html>

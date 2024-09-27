@@ -29,6 +29,7 @@ import java.util.List;
 import umg.edu.gt.DAO.ConexionDAO;
 import umg.edu.gt.DAO.ConsultaEmpleadosDAO;
 import umg.edu.gt.DTO.DatosEmpleadosDTO;
+import umg.edu.gt.DTO.DatosEmpleadosDTO.Rol;
 
 @ManagedBean(name="bkn_Empleados")
 @ViewScoped
@@ -67,18 +68,22 @@ public class EmpleadoUI implements Serializable {
             System.out.println("Error en la conexion: " + ex);
         }
     }
+    
+    public Rol[] getRolItems() {
+    return Rol.values();
+}
 
     public void insertaDatos() {
-        if (datosInsert != null && 
-            (datosInsert.getCodigoEmpleado() > 0 ||
-             datosInsert.getNombre() != null && !datosInsert.getNombre().isEmpty() ||
-             datosInsert.getApellido() != null && !datosInsert.getApellido().isEmpty() ||
-             datosInsert.getEmail() != null && !datosInsert.getEmail().isEmpty() ||
-             datosInsert.getTelefono() != null && !datosInsert.getTelefono().isEmpty() ||
-             datosInsert.getDireccion() != null && !datosInsert.getDireccion().isEmpty() ||
-             datosInsert.getSalarioBase() > 0 ||
-             datosInsert.getRol() != null && !datosInsert.getRol().isEmpty() ||
-             datosInsert.isActivo())) {
+         if (datosInsert != null && 
+        (datosInsert.getCodigoEmpleado() > 0 ||
+         datosInsert.getNombre() != null && !datosInsert.getNombre().isEmpty() ||
+         datosInsert.getApellido() != null && !datosInsert.getApellido().isEmpty() ||
+         datosInsert.getIdentificacion() != null && !datosInsert.getIdentificacion().isEmpty() ||
+         datosInsert.getTelefono() != null && !datosInsert.getTelefono().isEmpty() ||
+         datosInsert.getDireccion() != null && !datosInsert.getDireccion().isEmpty() ||       
+         datosInsert.getRol() != null || // Cambiado para comprobar que el Rol no sea nulo
+         datosInsert.getArea() != null && !datosInsert.getArea().isEmpty() ||          
+         datosInsert.isActivo())) {
 
             ConexionDAO con = new ConexionDAO();
             try (Connection conexion = con.conexionMysql()) {

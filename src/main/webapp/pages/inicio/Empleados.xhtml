@@ -31,6 +31,7 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
                 width: 50%;
                 transition: background-color 0.3s ease; /* Efecto hover */
+                border-radius: 15px;
             }
 
             .login-container:hover {
@@ -45,7 +46,7 @@
                 align-items: center;
                 justify-content: center;
                 height: auto;
-                margin-top: 20px; /* Espacio entre el formulario y el código de barras */
+                margin-top: 40px; /* Espacio entre el formulario y el código de barras */
             }
 
             .barcode-container p {
@@ -71,7 +72,7 @@
                 padding: 10px;
                 margin-bottom: 10px;
                 border: 1px solid #ccc;
-                border-radius: 3px;
+                border-radius: 20px;
                 background-color: rgba(255, 255, 255, 0.1); /* Fondo traslúcido */
                 color: white; /* Texto blanco */
             }
@@ -80,10 +81,23 @@
                 text-align: justify;
                 margin: 125px; /* correr texto */
             }
-
-           
-       
+            
+            .sel-esti {
+            width: 30%; /* Ajusta el ancho del componente (puedes cambiar el valor) */
+            height: 40px; /* Ajusta la altura del componente (puedes modificar según necesites) */
+            padding: 10px !important; /* Espacio interno similar a otros campos */
+            margin-bottom: 10px !important; /* Espacio inferior igual a los demás */
+            border: 1px solid #ccc !important; /* Borde similar a los campos de entrada */
+            border-radius: 20px !important; /* Bordes redondeados */
+            background-color: rgba(255, 255, 255, 0.1) !important; /* Fondo traslúcido */
+            color: white !important; /* Color del texto */
+            display: flex !important; /* Flexbox para centrar */
+            align-items: center !important; /* Centra verticalmente */
+            justify-content: center !important; /* Centra horizontalmente */
+            text-align: center !important; /* Asegura que el texto esté alineado al centro */
+            }        
         </style>
+        
     </h:head>
 
     <h:body>
@@ -103,8 +117,8 @@
                     <h:outputLabel for="apellido" value="Apellido:" />
                     <h:inputText id="apellido" value="#{bkn_Empleados.datosInsert.apellido}" required="true" />
 
-                    <h:outputLabel for="correoElectronico" value="Correo Electrónico:" />
-                    <h:inputText id="correoElectronico" value="#{bkn_Empleados.datosInsert.email}" required="true" />
+                    <h:outputLabel for="correoElectronico" value="Identificacion:" />
+                    <h:inputText id="correoElectronico" value="#{bkn_Empleados.datosInsert.identificacion}" required="true" />
 
                     <h:outputLabel for="telefono" value="Teléfono:" />
                     <h:inputText id="telefono" value="#{bkn_Empleados.datosInsert.telefono}" required="true" />
@@ -112,11 +126,17 @@
                     <h:outputLabel for="direccion" value="Dirección:" />
                     <h:inputText id="direccion" value="#{bkn_Empleados.datosInsert.direccion}" required="true" />
 
-                    <h:outputLabel for="salario" value="Salario:" />
-                    <h:inputText id="salario" value="#{bkn_Empleados.datosInsert.salarioBase}" required="true" />
-
                     <h:outputLabel for="rol" value="Rol:" />
-                    <h:inputText id="rol" value="#{bkn_Empleados.datosInsert.rol}" required="true" />
+                    <p:selectOneMenu class="sel-esti" id="rol" value="#{bkn_Empleados.datosInsert.rol}" required="true">
+                        <f:selectItem itemLabel="Seleccione un rol" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{bkn_Empleados.rolItems}" var="rol" itemLabel="#{rol}" itemValue="#{rol}" />
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="area" value="Especificar Área:" />
+                    <h:inputText id="are" value="#{bkn_Empleados.datosInsert.area}"/>
+                    
+                    <h:outputLabel for="monto" value="Monto Diario:" />
+                    <h:inputText id="mont" value="#{bkn_Empleados.datosInsert.monto_diario}"/>
 
                     <h:outputLabel for="estado" value="Activo:" />
                     <h:selectBooleanCheckbox id="estado" value="#{bkn_Empleados.datosInsert.activo}" required="true" />
@@ -127,7 +147,8 @@
                                      action="#{bkn_Empleados.insertaDatos}"
                                      update="@form :barcodeContainer messages" 
                                      style="width: 100%; background-color: deepskyblue; color: white; border: none; 
-                                     border-radius: 3px; padding: 10px; cursor: pointer; transition: background-color 0.3s;"
+                                     border-radius: 20px; padding: 10px; cursor: pointer; transition: background-color 0.3s;
+                                     font-size: 20px; font-weight: bold;"           
                                      onmouseover="this.style.backgroundColor='gray';"
                                      onmouseout="this.style.backgroundColor='deepskyblue';"/> 
                 </h:form>
@@ -138,15 +159,17 @@
                 <div class="top-right-buttons" style="position: absolute; top: 20px; right: 20px;">
                     <h:form>
                         <p:commandButton id="btnMenu" value="Volver a Menú" 
-                                         style="background-color: #000; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer;"
+                                         style="border: none; border-radius: 15px; 
+                                         cursor: pointer; background-color: rgba(255, 255, 255, 0.4);"
                                          onmouseover="this.style.backgroundColor='red';"
                                          onmouseout="this.style.backgroundColor='#000';"
-                                         action="MenuInicio.xhtml" />
+                                         action="MenuInicio.xhtml"/>
                     </h:form>
                     <br/>
                     <h:form>
                         <p:commandButton id="btnPdf" value="Descargar PDF" 
-                                         style="background-color: #000; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer;"
+                                         style="border: none; border-radius: 15px;
+                                         cursor: pointer; background-color: rgba(255, 255, 255, 0.4);"
                                          onmouseover="this.style.backgroundColor='gray';"
                                          onmouseout="this.style.backgroundColor='#000';"
                                          action="#{bkn_Empleados.generarPDF}" ajax="false" icon="pi pi-file-pdf"/>

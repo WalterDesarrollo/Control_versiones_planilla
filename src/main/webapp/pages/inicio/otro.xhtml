@@ -1,167 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
+  
     <h:head>
-        <title>Empleado</title>
-        <style>
-            body {
-                background-color: #000; /* Fondo negro */
-                font-family: Arial, sans-serif;
-                margin: 0;
-            }
-
-            .container {
-                display: flex;
-                justify-content: flex-start;
-                padding: 20px;
-                position: relative; /* Para posicionar los botones */
-            }
-
-            .login-container {
-                background-color: rgba(50, 50, 50, 0.8); /* Color gris traslúcido */
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                width: 50%;
-                transition: background-color 0.3s ease; /* Efecto hover */
-            }
-
-            .login-container:hover {
-                background-color: rgba(0, 0, 0, 0.9); /* Color negro al hacer hover */
-            }
-
-            .barcode-container {
-                width: 30%; /* Asegura que la tabla no sea tan ancha */
-                padding: 0;
-                background-color: transparent;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: auto;
-                margin-top: 20px; /* Espacio entre el formulario y el código de barras */
-            }
-
-            .barcode-container p {
-                margin: 0;
-            }
-
-            .login-container h1 {
-                margin-top: 0;
-                margin-bottom: 20px;
-                color: white; /* Color blanco para el título */
-            }
-
-            .login-container label {
-                display: block;
-                margin-bottom: 5px;
-                color: white; /* Color blanco para las etiquetas */
-            }
-
-            .login-container input[type="text"],
-            .login-container input[type="date"],
-            .login-container input[type="number"] {
-                width: 100%; /* Los campos de entrada ocupan el 100% del contenedor */
-                padding: 10px;
-                margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-                background-color: rgba(255, 255, 255, 0.1); /* Fondo traslúcido */
-                color: white; /* Texto blanco */
-            }
-
-            h1 {
-                text-align: justify;
-                margin: 125px; /* correr texto */
-            }
-
-           
-       
-        </style>
+        <title>Inicio de Sesion</title>
     </h:head>
 
+    <style>
+        body {
+            background-image: url("#{resource['images:limonero.jpg']}") !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            font-family: Arial, sans-serif !important;
+            color: #fff !important;
+            display: flex !important;
+            justify-content: center!important;
+            align-items: center !important;
+            height: 100vh !important;
+            margin: 0 !important;
+        }
+
+        .login-box {
+            background-color: rgba(0, 0, 0, 0.5)!important;
+            padding: 30px !important;
+            border-radius: 30px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2)!important;
+            width: 400px !important;
+            text-align: center!important;
+        }
+
+        .login-box h1 {
+            margin-bottom: 20px!important;
+            font-size: 24px !important;
+            color: #fff !important;
+        }
+
+        .login-input {
+            width: 100%!important;
+            padding: 10px !important;
+            margin-bottom: 15px !important;
+            border-radius: 20px !important; /* bordes redondeados*/
+            border: 1px solid rgba(255, 255, 255, 0.6)!important;
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            color: #fff!important;
+            outline: none !important;
+        }
+
+        .login-input::placeholder {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .login-button {
+            background-color: #007bff !important;
+            border: none !important;
+            padding: 10px !important;
+            color: white !important;
+            border-radius: 25px !important;
+            width: 100% !important;
+            cursor: pointer !important;
+            font-size: 20px !important;
+            transition: background-color 0.3s !important;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3 !important;
+        }
+
+        .forgot-password {
+            margin-top: 15px !important;
+            font-size: 14px !important;
+        }
+
+        .forgot-password a {
+            color: #007bff !important;
+            text-decoration: none !important;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline !important;
+        }
+
+        .mensaje-error {
+            background-color: #ffcccc !important;
+            color: #cc0000 !important;
+            padding: 10px !important;
+            border-radius: 5px !important;
+            margin-top: 10px !important;
+        }
+
+        .mensaje-exito {
+            background-color: #ccffcc !important;
+            color: #006600 !important;
+            padding: 10px !important;
+            border-radius: 5px !important;
+            margin-top: 10px !important;
+        }
+
+        .logo img {
+            width: 150px !important;
+            height: 150px !important;
+            border-radius: 50% !important;
+            opacity: 0.8 !important; /* Añadido para la transparencia */
+        }
+        
+       .emp-log {
+            position: absolute !important;
+            top: 10px !important; /* Separación desde el borde superior */
+            left: 10px !important; /* Separación desde el borde izquierdo */
+        }
+
+        .emp-log img {
+            width: 220px !important;
+            height: 180px !important;
+            border-radius: 30% !important;
+            opacity: 0.7 !important;
+        }
+        
+    </style>
+
     <h:body>
-        <br/><br/><br/>
-        <div class="container">
-            <div class="login-container">
-                <h1>Registro de Empleados</h1>
-                <h:form id="form">
-                    <p:messages id="messages" showDetail="true" closable="true" />
+        
+         <div class="emp-log">
+                <p:graphicImage name="images/log-emp.png" alt="Login Icon" />
+            </div>
+        
+        <div class="login-box">
+            <div class="logo">
+                <p:graphicImage name="images/logo_inicio.png" alt="Login Icon" />
+            </div>
+            <h1>INICIO DE SESION</h1>  
 
-                    <h:outputLabel for="codigoEmpleado" value="Código Empleado:" />
-                    <h:inputText id="codigoEmpleado" value="#{bkn_Empleados.datosInsert.codigoEmpleado}" required="true" />
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
 
-                    <h:outputLabel for="nombre" value="Nombre:" />
-                    <h:inputText id="nombre" value="#{bkn_Empleados.datosInsert.nombre}" required="true" />
+                <p:inputText id="username" value="#{loginUI.loginDTO.username}" 
+                             required="true" requiredMessage="El usuario es obligatorio" 
+                             styleClass="login-input" placeholder="Ingrese su Usuario"/>
 
-                    <h:outputLabel for="apellido" value="Apellido:" />
-                    <h:inputText id="apellido" value="#{bkn_Empleados.datosInsert.apellido}" required="true" />
+                <p:password id="password" value="#{loginUI.loginDTO.password}" 
+                            required="true" requiredMessage="La contraseña es obligatoria" 
+                            styleClass="login-input" placeholder="Ingrese su Contraseña"/>
+                
+                <p:commandButton id="btnLogin" value="Iniciar Sesión" 
+                                 action="#{loginUI.validarLogin}" 
+                                 update="@form" styleClass="login-button"/>
 
-                    <h:outputLabel for="correoElectronico" value="Correo Electrónico:" />
-                    <h:inputText id="correoElectronico" value="#{bkn_Empleados.datosInsert.email}" required="true" />
-
-                    <h:outputLabel for="telefono" value="Teléfono:" />
-                    <h:inputText id="telefono" value="#{bkn_Empleados.datosInsert.telefono}" required="true" />
-
-                    <h:outputLabel for="direccion" value="Dirección:" />
-                    <h:inputText id="direccion" value="#{bkn_Empleados.datosInsert.direccion}" required="true" />
-
-                    <h:outputLabel for="salario" value="Salario:" />
-                    <h:inputText id="salario" value="#{bkn_Empleados.datosInsert.salarioBase}" required="true" />
-
-                    <h:outputLabel for="rol" value="Rol:" />
-                    <h:inputText id="rol" value="#{bkn_Empleados.datosInsert.rol}" required="true" />
-
-                    <h:outputLabel for="estado" value="Activo:" />
-                    <h:selectBooleanCheckbox id="estado" value="#{bkn_Empleados.datosInsert.activo}" required="true" />
-
-                    <br/><br/>
-
-                    <p:commandButton value="Guardar"
-                                     action="#{bkn_Empleados.insertaDatos}"
-                                     update="@form :barcodeContainer messages" 
-                                     style="width: 100%; background-color: deepskyblue; color: white; border: none; 
-                                     border-radius: 3px; padding: 10px; cursor: pointer; transition: background-color 0.3s;"
-                                     onmouseover="this.style.backgroundColor='gray';"
-                                     onmouseout="this.style.backgroundColor='deepskyblue';"/> 
-                </h:form>
-
-                <br/>
-
-                <!-- Botones en la parte superior derecha -->
-                <div class="top-right-buttons" style="position: absolute; top: 20px; right: 20px;">
-                    <h:form>
-                        <p:commandButton id="btnMenu" value="Volver a Menú" 
-                                         style="background-color: #000; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer;"
-                                         onmouseover="this.style.backgroundColor='red';"
-                                         onmouseout="this.style.backgroundColor='#000';"
-                                         action="MenuInicio.xhtml" />
-                    </h:form>
-                    <br/>
-                    <h:form>
-                        <p:commandButton id="btnPdf" value="Descargar PDF" 
-                                         style="background-color: #000; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer;"
-                                         onmouseover="this.style.backgroundColor='gray';"
-                                         onmouseout="this.style.backgroundColor='#000';"
-                                         action="#{bkn_Empleados.generarPDF}" ajax="false" icon="pi pi-file-pdf"/>
-                    </h:form>
+                <div class="forgot-password">
+                    <h:outputLink value="forgot-password.xhtml">Olvidaste tu contraseña?</h:outputLink>
                 </div>
-            </div>
 
-            <!-- Contenedor para mostrar el código de barras con espacio extra -->
-            <div class="barcode-container">
-                <h:panelGroup id="barcodeContainer" layout="block">
-                    <p:panel header="Código de Barras del Empleado" rendered="#{not empty bkn_Empleados.barcodeImagePath}">
-                        <p:graphicImage value="/resources/barcodes/#{bkn_Empleados.codigoEmpleadoGenerado}.png" />
-                        <h:outputText value="#{bkn_Empleados.codigoEmpleadoGenerado}" />
-                    </p:panel>
+                <h:panelGroup id="mensajePanel" layout="block">
+                    <h:outputText value="#{loginUI.mensaje}" rendered="#{not empty loginUI.mensaje}"
+                                  styleClass="#{loginUI.mensaje.startsWith('Error') ? 'mensaje-error' : 'mensaje-exito'}"/>
                 </h:panelGroup>
-            </div>
+            </h:form>
         </div>
     </h:body>
 </html>

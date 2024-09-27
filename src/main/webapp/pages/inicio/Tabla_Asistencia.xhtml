@@ -1,81 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
-    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
     <h:head>
-        <title>ASISTENCIA</title>
+        <title>Asistencia</title>
         <style>
-          .login-container {
-  background-color: #f9f9f9; /* fondo claro */
-  padding: 20px;
-  border-radius: 10px; /* bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* sombra leve */
-}
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url("#{resource['images:limonero.jpg']}") !important;
+                background-size: cover !important;
+                color: #000 !important;
+                margin: 0 !important;
+                padding: 20px !important;
+            }
 
-.tabla-asistencia {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #ddd; /* borde gris claro */
-}
+            .container {
+                width: 40% !important;
+                margin: 0 auto !important;
+                background-color: #ffffff !important;
+                padding: 20px !important;
+                border-radius: 10px !important;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+            }
 
-.tabla-asistencia th {
-  background-color: #337ab7; /* fondo azul claro */
-  color: #ffffff; /* texto blanco */
-  padding: 10px;
-  text-align: left;
-  border-bottom: 2px solid #337ab7; /* borde azul claro */
-}
+            h1 {
+                text-align: center !important;
+                margin-bottom: 20px !important;
+            }
 
-.tabla-asistencia td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd; /* borde gris claro */
-}
+            .form-group {
+                margin-bottom: 15px !important;
+            }
 
-.column-header {
-  font-weight: bold;
-  color: #337ab7; /* texto azul claro */
-}
+            .form-group label {
+                display: block !important;
+                margin-bottom: 5px !important;
+            }
 
-.tabla-asistencia tr:nth-child(even) {
-  background-color: #f2f2f2; /* fondo gris claro */
-}
+            .form-group input[type="text"] {
+                width: 100% !important;
+                padding: 10px !important;
+                border: 1px solid #ccc !important;
+                border-radius: 3px !important;
+            }
 
-.tabla-asistencia tr:hover {
-  background-color: #eaeaea; /* fondo gris claro hover */
-  cursor: pointer; /* cursor mano */
-}
+            .form-group button {
+                width: 100% !important;
+                padding: 10px !important;
+                background-color: #4CAF50 !important;
+                border: none !important;
+                border-radius: 3px !important;
+                color: white !important;
+                font-size: 16px !important;
+            }
+
+            .form-group button:hover {
+                background-color: #45a049 !important;
+            }
+
+            .message {
+                text-align: center !important;
+                margin-top: 20px !important;
+                font-size: 18px !important;
+            }
+
+            .table-container {
+                margin-top: 40px !important;
+                background-color: #ffffff !important;
+                border-radius: 10px !important;
+                padding: 20px !important;
+            }
+
+            .table-header {
+                text-align: center !important;
+                margin-bottom: 10px !important;
+                font-size: 24px !important;
+                color: #4CAF50 !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                margin-top: 10px !important;
+            }
+
+            th, td {
+                border: 2px solid #4CAF50 !important;
+                padding: 8px !important;
+                text-align: center !important;
+            }
+
+            th {
+                background-color: #4CAF50 !important;
+                color: white !important;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2 !important;
+            }
+
+            tr:hover {
+                background-color: #ddd !important;
+            }
+
         </style>
     </h:head>
-    
+
     <h:body>
-        <h:form>
-            <div class="login-container">
-                <h1>Asistencia</h1>
-                <p:dataTable class="tabla-asistencia" id="tblAsistencia" value="#{bkn_Asistencia.lista}" var="item">
-                    <p:column headerText="Asistencia ID" styleClass="column-header">
-                        <p:outputLabel value="#{item.asistenciaId}" />
+        <h:form id="mainForm">
+            <p:commandButton
+                style="width: 130px; height: 50px;
+                       font-size: 20px; font-weight: bold;
+                       background-color: #4CAF50; color: white;"
+                id="btvolver" value="Volver" action="MenuInicio.xhtml" />
+
+            <div class="table-container">
+                <p:panelGrid columns="6">
+                    <p:menuButton value="Ordenar Por:">
+                        <p:menuitem value="Código Empleado" 
+                                    actionListener="#{bkn_Asistencia.ordenar('Codigo_empleado')}" 
+                                    update="asistenciaTabla" 
+                                    process="@this" />
+                        <p:menuitem value="Nombre Empleado" 
+                                    actionListener="#{bkn_Asistencia.ordenar('nombre')}" 
+                                    update="asistenciaTabla" 
+                                    process="@this" />
+                    </p:menuButton>
+
+                    <p:inputText id="buscarInput" 
+                                 value="#{bkn_Asistencia.filtro}" 
+                                 placeholder="Ingrese el nombre" 
+                                 style="width: 200px;" />
+
+                    <p:commandButton id="btnBuscar" 
+                 value="Buscar" 
+                 actionListener="#{bkn_Asistencia.filtrarPorFechas()}" 
+                 update="asistenciaTabla" 
+                 icon="pi pi-search" />  
+
+                    <p:calendar id="fechaInicio" value="#{bkn_Asistencia.fechaInicio}" pattern="yyyy-MM-dd" 
+                                title="Fecha Inicio" showButtonPanel="true" showOn="button" 
+                                navigator="true" yearRange="c-10:c+10" 
+                                placeholder="Fecha Inicio" />
+                    
+                    <p:calendar id="fechaFin" value="#{bkn_Asistencia.fechaFin}" pattern="yyyy-MM-dd" 
+                                title="Fecha Fin" showButtonPanel="true" showOn="button" 
+                                navigator="true" yearRange="c-10:c+10"
+                                placeholder="Fecha Fin" />
+
+                    <p:commandButton value="Filtrar" 
+                                     actionListener="#{bkn_Asistencia.filtrarPorFechas}" 
+                                     update="asistenciaTabla" 
+                                     icon="pi pi-filter" />
+                    
+                    <p:commandButton id="btnGene" value="Calcular Salario" 
+                                     actionListener="#{bkn_Asistencia.calcularTotalDevengado}" 
+                                     update="asistenciaTabla" icon="pi pi-calculator"  /> 
+                             
+                    <p:menuButton value="Generar Reporte">
+                        <p:menuitem value="Generar Excel" 
+                                    actionListener="#{bkn_Asistencia.generarReporte}" 
+                                    ajax="false" />
+                        <p:menuitem value="Generar PDF" 
+                                    actionListener="#{bkn_Asistencia.generarReportePDF}" 
+                                    ajax="false" />
+                    </p:menuButton>
+
+                </p:panelGrid>
+            </div>
+
+            <div class="table-container">
+                <h2 class="table-header">Registro de Asistencia</h2>
+                <p:dataTable id="asistenciaTabla" 
+                             value="#{bkn_Asistencia.listaFiltrada}" 
+                             var="asistencia" 
+                             stripedRows="true" 
+                             style="margin-top:10px;"
+                             tableStyle="border: 2px solid #4CAF50;"> <!-- Cambiar a listaFiltrada -->
+
+                    <p:column headerText="No">
+                        <h:outputText value="#{asistencia.asistenciaId}" />
                     </p:column>
-                    <p:column headerText="Empleado ID" styleClass="column-header">
-                        <p:outputLabel value="#{item.empleadoId}" />
+                    <p:column headerText="Codigo Empleado">
+                        <h:outputText value="#{asistencia.codigoEmpleado}" />
                     </p:column>
-                    <p:column headerText="Fecha" styleClass="column-header">
-                        <p:outputLabel value="#{item.fecha}" />
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{asistencia.nombre}" />
                     </p:column>
-                    <p:column headerText="Hora de Entrada" styleClass="column-header">
-                        <p:outputLabel value="#{item.horaEntrada}" />
+                    <p:column headerText="Apellido">
+                        <h:outputText value="#{asistencia.apellido}" />
                     </p:column>
-                    <p:column headerText="Hora de Salida" styleClass="column-header">
-                        <p:outputLabel value="#{item.horaSalida}" />
+                    <p:column headerText="Fecha">
+                        <h:outputText value="#{asistencia.fecha}">
+                            <f:convertDateTime pattern="dd-MM-yy" />
+                        </h:outputText>
                     </p:column>
-                    <p:column headerText="Horas Trabajadas" styleClass="column-header">
-                        <p:outputLabel value="#{item.horasTrabajadas}" />
+                    <p:column headerText="Hora Entrada">
+                        <h:outputText value="#{asistencia.horaEntrada}" />
+                    </p:column>
+                    <p:column headerText="Hora Salida">
+                        <h:outputText value="#{asistencia.horaSalida}" />
+                    </p:column>
+                    <p:column headerText="Tiempo Trabajado">
+                        <h:outputText value="#{asistencia.horasTrabajadas}" />
+                    </p:column>
+                    <p:column headerText="Paga Diaria">
+                        <h:outputText value="#{asistencia.monto}" />
+                    </p:column>
+                    <p:column headerText="Total Devengado">
+                        <h:outputText style="color: red;" value="#{asistencia.total_devengado}" />
                     </p:column>
                 </p:dataTable>
             </div>
